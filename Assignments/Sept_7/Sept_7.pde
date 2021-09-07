@@ -1,4 +1,4 @@
-size(800, 600); //4:3 res
+size(800, 400);
 background(0, 200, 200); //cyan color background
 
 noStroke();
@@ -31,9 +31,28 @@ ellipse(450, 130, 9, 9);
 noFill();
 stroke(0);
 strokeWeight(4);
-arc(400, 170, 100, 100, PI/4, (3*PI)/4);
+arc(400, 150, 100, 100, PI/4, (3*PI)/4);
 
 //nose
 noStroke();
+rectMode(CENTER);
+fill(200, 100, 0);
+rect(400, 160, 20, 30);
+
+//neck
+fill(255, 207, 144);
+rect(400, 250, 30, 40);
+
+//torso
+fill(7, 101, 4);
+rect(400, 370, 160, 200);
+
+//random background elements
+fill(255, 255, 0);
+ellipse(800, 0, 200, 200);
+fill(255, 0, 0);
+ellipse(0, 400, 200, 200);
+
+//tried to do more hair, couldn't get the arc to agree with me though
 //fill(67, 38, 0);
-//arc(500, 100, 100, 200, QUARTER_PI, PI+QUARTER_PI, CHORD);
+//arc(470, 100, 50, 100, QUARTER_PI, PI+QUARTER_PI, CHORD);
