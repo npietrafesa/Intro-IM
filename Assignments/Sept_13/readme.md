@@ -1,1 +1,7 @@
-a
+# Process
+
+![](https://github.com/npietrafesa/Intro-IM/blob/main/media/Sep-13.png)
+
+Trying to figure out a design was probably the most difficult part here. A recurring theme with my projects will be me trying to figure out designs, as I am not a very creative person. From very early on, however, I knew I wanted to have some kind of repeating text or numbers. I Eventually settled on doing a matrix-hacker-esque look by making green 1s and 0s going up and down the screen. After this point, I hit another creative wall, unsure how to proceed further. Eventually, I decided to make some randomly generated black rectangles with green outlines to look like "rifts" in the background. However, I decided to add blue and red outlines squares later to make the image a bit less plain looking, and I liked the overlapping colors too. In my process of trying to find a centerpiece to the image, I decided to do another piece of text. While I was experimenting with styles, I found out a way to make words look 3D by using a for-loop and writing the text many times with a slight offset. I would also make the color become lighter in order to make the word seem like it has depth. After struggling for a while on what the text or phrase should be, I settled with a simple, but motivating "Aspire." 
+
+This time around I did not find much issue in the process of making my image, save for some creative issues. Looking back, it might've not hurt to add more random designs in the background, and maybe change the text phrase too. Overall though, I am pretty satisfied with the outcome.
