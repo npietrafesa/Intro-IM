@@ -21,7 +21,6 @@ class tile {
   }
   void reveal() {
     fill(200);
-    //stroke()
     square(xPos, yPos, 20);
     fill(255, 0, 0);
     textSize(15);
@@ -57,7 +56,7 @@ void draw() {
   text(timer, 200, 200);
   text(mineCount, 200, 400);
   println(mouseX, mouseY);
-  println((mouseX-(width/3))/20,(mouseY-(height/4))/20);
+  println((mouseX-(width-(board.length*20))/2)/20,(mouseY-(height-(board[0].length*20))/2)/20);
   if ((mouseX>=width/3 && mouseX<=(width/3)+(board.length*board[0].length)) && (mouseY>=height/4 && mouseY<=(height/4)+(board.length*board[0].length)))  {
     println("true");
   } else {
@@ -66,15 +65,15 @@ void draw() {
 }
 
 void mouseClicked() {
-  if ((mouseX>=width/3 && mouseX<=(width/3)+(board.length*board[0].length)) && (mouseY>=height/4 && mouseY<=(height/4)+(board.length*board[0].length))) {
-    board[(mouseX-(width/3))/20][(mouseY-(height/4))/20].reveal();
+  if ((mouseX>=(width-(board.length*20))/2 && mouseX<=((width-(board.length*20))/2)+(board.length*board[0].length)) && (mouseY>=(height-(board[0].length*20))/2 && mouseY<=((height-(board[0].length*20))/2)+(board.length*board[0].length))) {
+    board[(mouseX-(width-(board.length*20))/2)/20][(mouseY-(height-(board[0].length*20))/2)/20].reveal();
   }
 }
 
 void generateBoard(tile[][] arr) {
   for (int i=0; i<arr.length; i++) {
     for (int j=0; j<arr[0].length; j++) {
-      arr[i][j].build((i*20)+(width/3), (j*20)+(height/4));
+      arr[i][j].build((i*20)+((width-(arr.length*20))/2), (j*20)+((height-(arr[0].length*20))/2));
     }
   }
 }
