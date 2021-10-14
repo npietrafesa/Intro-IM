@@ -58,7 +58,7 @@ class tile { //tile class which is each individual tile in the grid
       case 0: //blank space
         fill(200);
         break;
-      case 1: //rest are self-explanatory. 1-8 adjacesnt mines
+      case 1: //rest are self-explanatory. 1-8 adjacent mines
         fill(0, 0, 255);
         break;
       case 2:
@@ -97,7 +97,7 @@ class tile { //tile class which is each individual tile in the grid
       if (id == 0) { //if blank space revealed, reveal all other blank spaces adjacent until none are left. it does this through recursion.
         int[] arr = {-1, 0, 1}; //array that will iterate through adjacent tiles
         for (int i : arr) {
-          for (int j : arr) { //a lot of calculations, its to make it so these will work with the verying board sizes.
+          for (int j : arr) { //a lot of calculations, its to make it so these will work with the varying board sizes.
           //essentially this checks that it will not reveal tiles out of bounds of the array
             if (((int)((xPos-(width-(board.length*20))/2)/20)+i<0 || (int)((xPos-(width-(board.length*20))/2)/20)+i>board.length-1) || ((int)((yPos-(height-(board[0].length*20))/2)/20)+j<0 || (int)((yPos-(height-(board[0].length*20))/2)/20)+j>board[0].length-1)) {
               continue;
@@ -118,7 +118,7 @@ class tile { //tile class which is each individual tile in the grid
     if (isRevealed) { //do not flag revealed tiles
       return;
     } else {
-      if (flagCount == 0) {
+      if (flagCount == 0) { //don't flag if there are no flags left
       } else {
         if (!isFlagged) { // if not flagged, add flag
           image(flag, xPos, yPos);
@@ -162,7 +162,7 @@ void setup() {
   boom = new SoundFile(this, "boom.mp3");
   music = new SoundFile(this, "music.wav");
   music.loop();
-  music.amp(0.3);
+  music.amp(0.3); //lowers music volume because its kinda loud by default
   music.play();
   mine = loadImage("mine.png");
   flag = loadImage("flag.png");
@@ -173,11 +173,11 @@ void setup() {
 void draw() {
   switch (bg) { //switch statement for backgrounds, this is how you can swap between them
   case MENU:
-    board = null;
+    board = null; //reset board so when you play again with a different difficulty the program doesn't crash
     background(0, 100, 100); //adding buttons and title
     fill(100);
-    rect(400, 500, 400, 75);
-    rect(400, 300, 400, 75);
+    rect(400, 500, 400, 75); //instructions button
+    rect(400, 300, 400, 75); //play button
     fill(0);
     textSize(100);
     text("MINESWEEPER", 325, 175);
@@ -189,7 +189,7 @@ void draw() {
   case INSTRUCTIONS:
     background(0, 100, 100); //instructions text
     fill(100);
-    rect(25, 25, 200, 75);
+    rect(25, 25, 200, 75); //back button
     fill(0);
     textSize(50);
     text("Back", 65, 80);
@@ -205,16 +205,15 @@ void draw() {
     text("many flags are left, which will be the exact number of mines in the grid. If you place all", 10, 600);
     text("flags and you havent won yet, double check your spots to ensure you haven't misplaced a flag!", 10, 650);
     text("That's all there is to it! Have fun and dont explode!", 250, 700);
-    //line(600, 0, 600, 800);
     break;
 
   case CHOOSE_DIFFICULTY: //choosing difficulty with a nested state machine
     background(0, 100, 100);
     fill(100);
-    rect(25, 25, 200, 75);
-    rect(400, 150, 400, 75);
-    rect(400, 350, 400, 75);
-    rect(400, 550, 400, 75);
+    rect(25, 25, 200, 75); //back
+    rect(400, 150, 400, 75); //easy
+    rect(400, 350, 400, 75); //medium
+    rect(400, 550, 400, 75); //hard
     fill(0);
     textSize(50);
     text("Back", 65, 80);
@@ -225,7 +224,7 @@ void draw() {
     text("Hard", 550, 600);
     text("40x20 Grid, 100 Mines", 380, 675);
     switch (diff) {
-    case NONE:
+    case NONE: //this is here for when you exit a game so it doesnt automatically throw you back into the same difficulty
       break;
     case EASY: //change grid size and mine count based on selected difficulty
       board = new tile[10][10];
@@ -255,19 +254,19 @@ void draw() {
     break;
 
   case GAME: //this is the actual game
-    if (!boardSet) {
+    if (!boardSet) { //set up board if not set, this is here so it doesnt keep building a new board every tick
       background(0, 100, 100);
       setupBoard(); //builds grid
       fill(100);
-      rect(25, 25, 200, 75);
-      rect(950, 25, 200, 75);
+      rect(25, 25, 200, 75); //exit
+      rect(950, 25, 200, 75); //restart
       fill(0);
       textSize(50);
       text("Exit", 75, 80);
       text("Restart", 975, 80);
     } else {
       timer = millis(); //timer
-      if (timer/1000 >= 999) {
+      if (timer/1000 >= 999) { //timer doesnt go beyond 999 seconds, I was trying to stay true to the original
         timer = 999;
       }
       textSize(100);
@@ -299,6 +298,8 @@ void draw() {
 void mouseClicked() {
   switch (bg) {
   case MENU: //functionality to buttons on menu
+  //switch statements are here so you arent clicking nonexistent buttons when changing backgrounds
+  //all these if statements check to see if the mouse when clicked is within the bounds of one of the squares or tiles or whatever it needs to be
     if ((mouseX > 400 && mouseX < 800) && (mouseY > 300 && mouseY < 375)) { //play
       bg = Background.CHOOSE_DIFFICULTY;
       clear();
@@ -315,7 +316,7 @@ void mouseClicked() {
     break;
 
   case CHOOSE_DIFFICULTY:
-    if ((mouseX > 25 && mouseX < 225) && (mouseY > 25 && mouseY < 100)) {
+    if ((mouseX > 25 && mouseX < 225) && (mouseY > 25 && mouseY < 100)) { //back
       bg = Background.MENU;
       clear();
     } else if ((mouseX > 400 && mouseX < 800) && (mouseY > 150 && mouseY < 225)) { //easy
@@ -359,7 +360,7 @@ void mouseClicked() {
   }
 }
 
-void generateBoard(tile[][] arr) {  //builds base board
+void generateBoard(tile[][] arr) {  //builds base board, the blank grid
   for (int i=0; i<arr.length; i++) {
     for (int j=0; j<arr[0].length; j++) {
       arr[i][j].build((i*20)+((width-(arr.length*20))/2), (j*20)+((height-(arr[0].length*20))/2));
@@ -428,7 +429,7 @@ void checkWinCondition() {
   }
 }
 
-void setupBoard() { //generates entire board
+void setupBoard() { //generates entire board, initializes tiles, builds grid, then mines, then numbers
   for (int i=0; i<board.length; i++) {
     for (int j=0; j<board[0].length; j++) {
       board[i][j] = new tile();
