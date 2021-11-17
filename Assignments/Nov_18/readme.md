@@ -12,11 +12,17 @@ You can also see the chart I used to find trumpet fingerings [here](https://www.
 The fingerings are as follows (0 meaning unpressed, 1 being pressed):
 
 1 1 1 - C
+
 1 0 1 - D
+
 0 1 1 - E
+
 1 1 0 - F
+
 1 0 0 - G
+
 0 1 0 - A
+
 0 0 1 - B
 
 How high or low that specific note is dependent on the position of the potentiometer. The more it is turned, the higher the octave. The instrument has a range 
