@@ -1,12 +1,12 @@
 import processing.sound.*;
 enum Background { //control which background
-  MENU,
+    MENU,
     INSTRUCTIONS,
     CHOOSE_DIFFICULTY,
     GAME,
 }
 enum Difficulty { //control which difficulty
-  EASY,
+    EASY,
     MEDIUM,
     HARD,
     NONE
