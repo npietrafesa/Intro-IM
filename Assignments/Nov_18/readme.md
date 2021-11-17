@@ -1,5 +1,5 @@
 
-![](https://github.com/npietrafesa/Intro-IM/blob/main/media/Nov-18.png)
+![](https://github.com/npietrafesa/Intro-IM/blob/main/media/Nov-18.JPG)
 
 My instrument was designed partially based off of a trumpet, so it has 3 buttons that can be used in different combinations to make different notes.
 A trumpet plays different notes based not only off fingering, but how hard you are blowing as well. Originally, I thought about using the photoresistor,
@@ -26,4 +26,4 @@ The coding process wasn't particularly difficult, I just ran into a minor error 
 This was due to me using the wrong function, I tried to use `tone(pin, 0)` to try and make the piezo sensor silent, when I should have been using `noTone()`
 instead.
 
-The demo video was too large to upload, so you can find it[here](https://drive.google.com/file/d/14SzAcRgQKyjHFvySjzkYRoDaPJSbZzJj/view?usp=sharing).
+The demo video was too large to upload, so you can find it [here](https://drive.google.com/file/d/14SzAcRgQKyjHFvySjzkYRoDaPJSbZzJj/view?usp=sharing).
