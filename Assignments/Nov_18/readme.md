@@ -1,5 +1,5 @@
 
-![](https://github.com/npietrafesa/Intro-IM/blob/main/media/Nov-18.JPG)
+![](https://github.com/npietrafesa/Intro-IM/blob/main/media/Nov_18.JPG)
 
 My instrument was designed partially based off of a trumpet, so it has 3 buttons that can be used in different combinations to make different notes.
 A trumpet plays different notes based not only off fingering, but how hard you are blowing as well. Originally, I thought about using the photoresistor,
