@@ -2,11 +2,12 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
+const int CEPIN = 9;
+const int CSNPIN = 10;
 RF24 radio(CEPIN, CSNPIN);  // CE, CSN
 
 //radio pin setup
-const int CEPIN = 9;
-const int CSNPIN = 10;
+
 
 //address the radio will operate on
 const byte address[6] = "00001";
@@ -30,6 +31,7 @@ void loop() {
     Serial.println(processingRaw, DEC);
   } 
   int data = processingRaw; //data will either be 0 or one of the key values
+  //data = 1;
   if (data) { //if data not 0, send info over to receiver.
     Serial.print( "Transmitter Sending: " );
     Serial.println(data);

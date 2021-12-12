@@ -3,11 +3,10 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
-RF24 radio(CEPIN, CSNPIN);  // CE, CSN
-
 //radio pin setup
 const int CEPIN = 9;
 const int CSNPIN = 10;
+RF24 radio(CEPIN, CSNPIN);  // CE, CSN
 
 //address the radio will operate on
 const byte address[6] = "00001";
@@ -70,14 +69,14 @@ void loop() {
       digitalWrite(bin2Pin, HIGH);
       analogWrite(pwmAPin, 255);
       analogWrite(pwmBPin, 255);
-    } else if (data == 4) { //turn left
+    } else if (data == 3) { //turn left
       digitalWrite(ain1Pin, HIGH);
       digitalWrite(ain2Pin, LOW);
       digitalWrite(bin1Pin, HIGH);
       digitalWrite(bin2Pin, LOW);
       analogWrite(pwmAPin, 255);
       analogWrite(pwmBPin, 255);
-    } else if (data == 8) { //move back
+    } else if (data == 4) { //move back
       digitalWrite(ain1Pin, LOW);
       digitalWrite(ain2Pin, HIGH);
       digitalWrite(bin1Pin, HIGH);
@@ -90,7 +89,47 @@ void loop() {
   } else {
     stop();
   }
-  delay(5);
+  //delay(5);
+}
+
+void moveForward(int speed, unsigned long time) {
+  digitalWrite(ain1Pin, HIGH);
+  digitalWrite(ain2Pin, LOW);
+  digitalWrite(bin1Pin, LOW);
+  digitalWrite(bin2Pin, HIGH);
+  analogWrite(pwmAPin, speed);
+  analogWrite(pwmBPin, speed);
+  delay(time);
+}
+
+void moveBackward(int speed, unsigned long time) {
+  digitalWrite(ain1Pin, LOW);
+  digitalWrite(ain2Pin, HIGH);
+  digitalWrite(bin1Pin, HIGH);
+  digitalWrite(bin2Pin, LOW);
+  analogWrite(pwmAPin, speed);
+  analogWrite(pwmBPin, speed);
+  delay(time);
+}
+
+void turnLeft(int speed, unsigned long time) {
+  digitalWrite(ain1Pin, HIGH);
+  digitalWrite(ain2Pin, LOW);
+  digitalWrite(bin1Pin, HIGH);
+  digitalWrite(bin2Pin, LOW);
+  analogWrite(pwmAPin, speed);
+  analogWrite(pwmBPin, speed);
+  delay(time);
+}
+
+void turnRight(int speed, unsigned long time) {
+  digitalWrite(ain1Pin, LOW);
+  digitalWrite(ain2Pin, HIGH);
+  digitalWrite(bin1Pin, LOW);
+  digitalWrite(bin2Pin, HIGH);
+  analogWrite(pwmAPin, speed);
+  analogWrite(pwmBPin, speed);
+  delay(time);
 }
 
 void stop() { //stops motors
@@ -100,4 +139,15 @@ void stop() { //stops motors
   digitalWrite(bin2Pin, LOW);
   analogWrite(pwmAPin, 0);
   analogWrite(pwmBPin, 0);
+}
+
+void doDonut() {
+  turnLeft(100, 5000);
+}
+
+void moveDemo() {
+  moveForward(50, 500);
+  turnRight(100, 1000);
+  moveBackwards(200, 500);
+  turnLeft(50, 500);
 }
