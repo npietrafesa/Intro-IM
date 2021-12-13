@@ -2,6 +2,9 @@ import processing.serial.*;
 Serial robot;
 String val;
 int raw;
+boolean isAutoCodeExecuting = false;
+boolean execDonut = false;
+boolean execDemoMove = false;
 void setup() {
   size(200, 200);
   robot = new Serial(this, Serial.list()[1], 9600);
@@ -67,4 +70,8 @@ void keyPressed() {
 
 void keyReleased() {
   raw = 0;
+}
+
+void mousePressed() {
+  
 }
