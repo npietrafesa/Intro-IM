@@ -40,7 +40,7 @@ void draw() {
     robot.write(4);
     break;
     default:
-    robot.write(0);
+   // robot.write(0);
     break;
   }
 }
