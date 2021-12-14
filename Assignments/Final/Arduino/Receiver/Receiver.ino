@@ -55,48 +55,51 @@ void loop() {
     Serial.println(data);
 
     //see transmitter code for info about the data.
-    if (data == 1) { //turn right
+    if (data == 1) { //back
+      digitalWrite(ain1Pin, LOW);
+      digitalWrite(ain2Pin, HIGH);
+      digitalWrite(bin1Pin, LOW);
+      digitalWrite(bin2Pin, HIGH);
       analogWrite(pwmAPin, 100);
-      digitalWrite(ain1Pin, LOW);
-      digitalWrite(ain2Pin, HIGH);
       analogWrite(pwmBPin, 100);
-      digitalWrite(bin1Pin, LOW);
-      digitalWrite(bin2Pin, HIGH);
-    } else if (data == 2) { //move fwd
+    } else if (data == 2) { //right
       digitalWrite(ain1Pin, HIGH);
       digitalWrite(ain2Pin, LOW);
       digitalWrite(bin1Pin, LOW);
       digitalWrite(bin2Pin, HIGH);
-      analogWrite(pwmAPin, 255);
-      analogWrite(pwmBPin, 255);
-    } else if (data == 3) { //turn left
+      analogWrite(pwmAPin, 100);
+      analogWrite(pwmBPin, 100);
+    } else if (data == 3) { //fwd
       digitalWrite(ain1Pin, HIGH);
       digitalWrite(ain2Pin, LOW);
       digitalWrite(bin1Pin, HIGH);
       digitalWrite(bin2Pin, LOW);
-      analogWrite(pwmAPin, 255);
-      analogWrite(pwmBPin, 255);
-    } else if (data == 4) { //move back
+      analogWrite(pwmAPin, 100);
+      analogWrite(pwmBPin, 100);
+    } else if (data == 4) { //left
       digitalWrite(ain1Pin, LOW);
       digitalWrite(ain2Pin, HIGH);
       digitalWrite(bin1Pin, HIGH);
       digitalWrite(bin2Pin, LOW);
-      analogWrite(pwmAPin, 255);
-      analogWrite(pwmBPin, 255);
+      analogWrite(pwmAPin, 100);
+      analogWrite(pwmBPin, 100);
+    } else if (data == 5) {
+      doDonut();
+    } else if (data == 6) {
+      moveDemo();
     } else {
       stop();
     }
   } else {
     stop();
   }
-  //delay(5);
 }
 
 void moveForward(int speed, unsigned long time) {
   digitalWrite(ain1Pin, HIGH);
   digitalWrite(ain2Pin, LOW);
-  digitalWrite(bin1Pin, LOW);
-  digitalWrite(bin2Pin, HIGH);
+  digitalWrite(bin1Pin, HIGH);
+  digitalWrite(bin2Pin, LOW);
   analogWrite(pwmAPin, speed);
   analogWrite(pwmBPin, speed);
   delay(time);
@@ -105,16 +108,16 @@ void moveForward(int speed, unsigned long time) {
 void moveBackward(int speed, unsigned long time) {
   digitalWrite(ain1Pin, LOW);
   digitalWrite(ain2Pin, HIGH);
-  digitalWrite(bin1Pin, HIGH);
-  digitalWrite(bin2Pin, LOW);
+  digitalWrite(bin1Pin, LOW);
+  digitalWrite(bin2Pin, HIGH);
   analogWrite(pwmAPin, speed);
   analogWrite(pwmBPin, speed);
   delay(time);
 }
 
 void turnLeft(int speed, unsigned long time) {
-  digitalWrite(ain1Pin, HIGH);
-  digitalWrite(ain2Pin, LOW);
+  digitalWrite(ain1Pin, LOW);
+  digitalWrite(ain2Pin, HIGH);
   digitalWrite(bin1Pin, HIGH);
   digitalWrite(bin2Pin, LOW);
   analogWrite(pwmAPin, speed);
@@ -123,8 +126,8 @@ void turnLeft(int speed, unsigned long time) {
 }
 
 void turnRight(int speed, unsigned long time) {
-  digitalWrite(ain1Pin, LOW);
-  digitalWrite(ain2Pin, HIGH);
+  digitalWrite(ain1Pin, HIGH);
+  digitalWrite(ain2Pin, LOW);
   digitalWrite(bin1Pin, LOW);
   digitalWrite(bin2Pin, HIGH);
   analogWrite(pwmAPin, speed);
@@ -143,11 +146,12 @@ void stop() { //stops motors
 
 void doDonut() {
   turnLeft(100, 5000);
+  turnRight(100, 5000);
 }
 
 void moveDemo() {
   moveForward(50, 500);
   turnRight(100, 1000);
-  moveBackwards(200, 500);
+  moveBackward(200, 500);
   turnLeft(50, 500);
 }

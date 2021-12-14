@@ -13,57 +13,48 @@ void setup() {
 
 void draw() {
   background(200);
-  //if (robot.available() > 0)
-  //{  // If data is available,
-  //  val = robot.readStringUntil('\n');         // read it and store it in val
-  //  println(val);
-  //}
-  //if (raw == 0) {
-  //  robot.write(0);
-  //} else {
-  //  raw = -1;
-  //}
-  //if (!keyPressed) {
-  //  robot.write(255);
-  //}
-  //robot.write(0);
+  //write different numbers like a code, each number tells the receiver to do different things.
   switch (raw) {
-    case 1:
+  case 1:
     robot.write(1);
     break;
-    case 2:
+  case 2:
     robot.write(2);
     break;
-    case 3:
+  case 3:
     robot.write(3);
     break;
-    case 4:
+  case 4:
     robot.write(4);
     break;
-    default:
-   // robot.write(0);
+  default:
+    robot.write(0);
     break;
   }
-  
+  //arrow keys
   fill(255);
   rect(400, 220, 150, 150, 20);
   rect(400, 580, 150, 150, 20);
   rect(220, 400, 150, 150, 20);
   rect(580, 400, 150, 150, 20);
 
+  //text boxes
   rect(150, 150, 200, 150, 20);
   rect(650, 150, 200, 150, 20);
 
+  //arrows of arrow keys
   fill(0);
   triangle(365, 255, 435, 255, 400, 175);
   triangle(365, 545, 435, 545, 400, 625);
   triangle(255, 435, 255, 365, 175, 400);
   triangle(545, 435, 545, 365, 625, 400);
+  
   textSize(40);
   text("Do a Donut", 60, 160);
   textSize(30);
   text("Autonomous\nDemo", 570, 130);
 
+  //darken sequare mouse is over
   if ((mouseX >= 325 && mouseX <= 475) && (mouseY >= 145 && mouseY <= 295) && !mousePressed) {
     fill(225);
     rect(400, 220, 150, 150, 20);
@@ -97,7 +88,8 @@ void draw() {
     textSize(30);
     text("Autonomous\nDemo", 570, 130);
   }
-
+  
+  //darken more when clicked
   if (((mouseX >= 325 && mouseX <= 475) && (mouseY >= 145 && mouseY <= 295) && mousePressed) || (keyPressed && (keyCode == UP || key == 'W' || key == 'w'))) {
     fill(100);
     rect(400, 220, 150, 150, 20);
@@ -131,40 +123,44 @@ void draw() {
     textSize(30);
     text("Autonomous\nDemo", 570, 130);
   }
-  
 }
 
 void keyPressed() {
   if (key == 'w' || key == 'W' || keyCode == UP) {
     println("Going Forward");
-    raw = 1;
-    //robot.write(0);
+    raw = 3;
   } else if (key == 's' || key == 'S' || keyCode == DOWN) {
     println("Going Backward");
-    raw = 2;
-    //robot.write(1);
+    raw = 1;
   } else if (key == 'a' || key == 'A' || keyCode == LEFT) {
     println("Turning Left");
-    raw = 3;
-    //robot.write(2);
+    raw = 4;
   } else if (key == 'd' || key == 'D' || keyCode == RIGHT) {
     println("Turn Right");
-    raw = 4;
-    //robot.write(3);
-  } 
-  //else {
-  //  robot.write(-1);
-  //}
+    raw = 2;
+  }
 }
 
-void keyReleased() {
+void keyReleased() { //reset when not clicking
   raw = 0;
 }
 
-void mousePressed() {
-    if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225)) {
+void mousePressed() { //move using keys on screen
+  if (((mouseX >= 325 && mouseX <= 475) && (mouseY >= 145 && mouseY <= 295))) {
+    raw = 3;
+  } else if (((mouseX >= 325 && mouseX <= 475) && (mouseY >= 505 && mouseY <= 655))) {
+    raw = 1;
+  } else if (((mouseX >= 145 && mouseX <= 295) && (mouseY >= 325 && mouseY <= 475))) {
+    raw = 4;
+  } else if (((mouseX >= 505 && mouseX <= 655) && (mouseY >= 325 && mouseY <= 475))) {
+    raw = 2;
+  } else if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225)) {
     robot.write(5);
-  } else if ((mouseX >= 575 && mouseX <= 725) && (mouseY >= 75 && mouseY <= 225) {
+  } else if ((mouseX >= 575 && mouseX <= 725) && (mouseY >= 75 && mouseY <= 225)) {
     robot.write(6);
   }
+}
+
+void mouseReleased() { //reset when not clicking
+  raw = 0;
 }
