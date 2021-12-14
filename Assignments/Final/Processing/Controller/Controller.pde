@@ -45,7 +45,7 @@ void draw() {
     break;
   }
   
-    fill(255);
+  fill(255);
   rect(400, 220, 150, 150, 20);
   rect(400, 580, 150, 150, 20);
   rect(220, 400, 150, 150, 20);
@@ -59,6 +59,10 @@ void draw() {
   triangle(365, 545, 435, 545, 400, 625);
   triangle(255, 435, 255, 365, 175, 400);
   triangle(545, 435, 545, 365, 625, 400);
+  textSize(40);
+  text("Do a Donut", 60, 160);
+  textSize(30);
+  text("Autonomous\nDemo", 570, 130);
 
   if ((mouseX >= 325 && mouseX <= 475) && (mouseY >= 145 && mouseY <= 295) && !mousePressed) {
     fill(225);
@@ -83,9 +87,15 @@ void draw() {
   } else if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225) && !mousePressed) {
     fill(225);
     rect(150, 150, 200, 150, 20);
+    fill(0);
+    textSize(40);
+    text("Do a Donut", 60, 160);
   } else if ((mouseX >= 575 && mouseX <= 725) && (mouseY >= 75 && mouseY <= 225) && !mousePressed) {
     fill(225);
     rect(650, 150, 200, 150, 20);
+    fill(0);
+    textSize(30);
+    text("Autonomous\nDemo", 570, 130);
   }
 
   if (((mouseX >= 325 && mouseX <= 475) && (mouseY >= 145 && mouseY <= 295) && mousePressed) || (keyPressed && (keyCode == UP || key == 'W' || key == 'w'))) {
@@ -111,9 +121,15 @@ void draw() {
   } else if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225) && mousePressed) {
     fill(100);
     rect(150, 150, 200, 150, 20);
+    fill(0);
+    textSize(40);
+    text("Do a Donut", 60, 160);
   } else if ((mouseX >= 575 && mouseX <= 725) && (mouseY >= 75 && mouseY <= 225) && mousePressed) {
     fill(100);
     rect(650, 150, 200, 150, 20);
+    fill(0);
+    textSize(30);
+    text("Autonomous\nDemo", 570, 130);
   }
   
 }
@@ -146,7 +162,9 @@ void keyReleased() {
 }
 
 void mousePressed() {
-    if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225) && mousePressed) {
-    //robot.write(5);
+    if ((mouseX >= 50 && mouseX <= 250) && (mouseY >= 75 && mouseY <= 225)) {
+    robot.write(5);
+  } else if ((mouseX >= 575 && mouseX <= 725) && (mouseY >= 75 && mouseY <= 225) {
+    robot.write(6);
   }
 }
