@@ -9,7 +9,7 @@ const int CSNPIN = 10;
 RF24 radio(CEPIN, CSNPIN);  // CE, CSN
 
 //address the radio will operate on
-const byte address[6] = "000030";
+const byte address[6] = "00030";
 
 int processingRaw = 0; //handles data processing will send over
 
