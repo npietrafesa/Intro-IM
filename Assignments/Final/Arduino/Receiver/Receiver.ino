@@ -9,7 +9,7 @@ const int CSNPIN = 10;
 RF24 radio(CEPIN, CSNPIN);  // CE, CSN
 
 //address the radio will operate on
-const byte address[6] = "00001";
+const byte address[6] = "000030";
 
 // motor controller pins
 const int ain1Pin = 3;
@@ -54,7 +54,7 @@ void loop() {
     Serial.print("Receiver received: ");
     Serial.println(data);
 
-    //see transmitter code for info about the data.
+    //depending on the number the receiver gets, it will execute a different code
     if (data == 1) { //back
       digitalWrite(ain1Pin, LOW);
       digitalWrite(ain2Pin, HIGH);

@@ -9,7 +9,7 @@ const int CSNPIN = 10;
 RF24 radio(CEPIN, CSNPIN);  // CE, CSN
 
 //address the radio will operate on
-const byte address[6] = "00001";
+const byte address[6] = "000030";
 
 int processingRaw = 0; //handles data processing will send over
 
@@ -28,9 +28,10 @@ void loop() {
     processingRaw = Serial.read();
     Serial.print("Transmitter Received: ");
     Serial.println(processingRaw, DEC);
-  } 
- int data = processingRaw;
-  if (data != 0) { 
+  }
+  //send over data from processing to receiver
+  int data = processingRaw;
+  if (data != 0) {
     Serial.print( "Transmitter Sending: " );
     Serial.println(data);
     radio.write(&data, sizeof(data));
