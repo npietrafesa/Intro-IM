@@ -26,14 +26,10 @@ void loop() {
   // read input data from processing, if there is any
   if (Serial.available() > 0) {
     processingRaw = Serial.read();
-    Serial.print("Transmitter Received: ");
-    Serial.println(processingRaw, DEC);
   }
   //send over data from processing to receiver
   int data = processingRaw;
   if (data != 0) {
-    Serial.print( "Transmitter Sending: " );
-    Serial.println(data);
     radio.write(&data, sizeof(data));
   }
 }
